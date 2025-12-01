@@ -1,0 +1,463 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Веб-разработчик</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Новые стили для главной страницы */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        .cta-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.1s forwards;
+        }
+        
+        .cta-button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Секция "О себе" на главной */
+        .about-preview {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .skills-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .skill-tag {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .about-image {
+            text-align: center;
+        }
+        
+        .avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Секция услуг */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Секция статистики */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Секция призыва к действию */
+        .cta-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #3498db;
+            padding: 15px 30px;
+            border: 2px solid #3498db;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Моё Портфолио</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Главная</a></li>
+            <li><a href="about.html">Обо мне</a></li>
+            <li><a href="projects.html">Проекты</a></li>
+            <li><a href="contact.html">Контакты</a></li>
+            <li><a href="auth.html" id="authLink">Войти</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Привет, я <span class="highlight">Веб-разработчик</span></h1>
+            <p>Создаю современные и интуитивно понятные веб-приложения, которые решают реальные задачи бизнеса</p>
+            <button class="cta-button" onclick="location.href='projects.html'">Смотреть работы</button>
+        </div>
+    </header>
+
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Обо мне</h2>
+                    <p>Я passionate веб-разработчик с более чем 4-летним опытом создания цифровых продуктов. Специализируюсь на современных технологиях и фреймворках, создаю продукты, которые нравятся пользователям и приносят результат бизнесу.</p>
+                    
+                    <div class="skills-preview">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                    
+                    <button class="btn-primary" onclick="location.href='about.html'">Узнать больше</button>
+                </div>
+                
+                <div class="about-image">
+                    <div class="avatar">
+                        👨‍💻
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2>Мои услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Веб-разработка</h3>
+                    <p>Создание современных веб-приложений с использованием React, Vue.js и других современных технологий.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Мобильные приложения</h3>
+                    <p>Разработка кроссплатформенных мобильных приложений с использованием React Native и Flutter.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Технический консалтинг</h3>
+                    <p>Помощь в выборе технологического стека, архитектурные решения и код-ревью.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Завершенных проектов</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4+</h3>
+                    <p>Года опыта</p>
+                </div>
+                <div class="stat-item">
+                    <h3>30+</h3>
+                    <p>Довольных клиентов</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Технологий в стеке</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Готовы начать проект?</h2>
+            <p>Давайте обсудим вашу идею и создадим что-то удивительное вместе!</p>
+            <div class="cta-buttons">
+                <button class="btn-primary" onclick="location.href='contact.html'">Связаться со мной</button>
+                <button class="btn-secondary" onclick="location.href='projects.html'">Посмотреть проекты</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="db.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Обновление ссылки авторизации
+        function updateAuthLink() {
+            const authLink = document.getElementById('authLink');
+            if (!authLink) return;
+
+            try {
+                const currentUser = db.getCurrentUser();
+                
+                if (currentUser) {
+                    authLink.textContent = 'Выйти (' + currentUser.name + ')';
+                    authLink.href = '#';
+                    authLink.onclick = function(e) {
+                        e.preventDefault();
+                        db.logout();
+                        window.location.reload();
+                    };
+                } else {
+                    authLink.textContent = 'Войти';
+                    authLink.href = 'auth.html';
+                    authLink.onclick = null;
+                }
+            } catch (error) {
+                console.error('Error in updateAuthLink:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthLink();
+        });
+    </script>
+</body>
+</html>
